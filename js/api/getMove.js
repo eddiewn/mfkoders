@@ -2,9 +2,9 @@ const apiURL = "https://pokeapi.co/api/v2/"
 
 // Fetches pokemon
 
-export const getMove = async(pokemon = 1) => {
+export const getMove = async(move) => {
     try {
-        const response = await fetch(`${apiURL}/move/${15}`);
+        const response = await fetch(`${apiURL}/move/${move}`);
 
         if(!response.ok) throw new Error("Failed to fetch pokemon");
 

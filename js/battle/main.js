@@ -1,13 +1,13 @@
 import {getPokemon} from "../api/getPokemon.js";
-import { getMove } from "../api/getMove.js";
+import {getMove} from "../api/getMove.js";
 import {Pokemon} from "./PokemonClass.js";
-import { RenderPlayers } from "./RenderPlayer.js";
+import {RenderPlayers} from "./RenderPlayer.js";
 
 let players = [];
 let playerTurn = 0;
 
 document.querySelector(".api-btn").addEventListener("click", async () => {
-    console.log("Button press")
+    console.log("Button press");
     await startBattle();
 });
 
@@ -23,9 +23,10 @@ const createPlayerStates = async () => {
         // Can only give out attack moves for now.
         let moves = [];
         while (moves.length !== 4) {
-            const move = await getMove(
-                Math.floor(Math.random() * fetchedPokemon.moves.length),
+            const random = Math.floor(
+                Math.random() * fetchedPokemon.moves.length,
             );
+            const move = await getMove(random);
             if (move.damage_class.name === "physical") moves.push(move);
         }
 
@@ -45,7 +46,7 @@ const createPlayerStates = async () => {
     }
 };
 
-const RenderArena = async() => {
+const RenderArena = async () => {
     document.body.innerHTML = "";
     const ArenaDiv = document.createElement("div");
     ArenaDiv.className = "arena";
@@ -53,10 +54,7 @@ const RenderArena = async() => {
     const body = document.querySelector("body");
     body.appendChild(ArenaDiv);
 
-
     RenderPlayers(players, playerTurn);
-
-
 };
 
 const startBattle = async () => {
