@@ -1,30 +1,42 @@
 import {getPokemon, getMove} from "./api.js";
-import { Pokemon } from "./PokemonClass.js"
+import {Pokemon} from "./PokemonClass.js";
 
-
-document.querySelector(".api-btn").addEventListener("click", async() => {
+document.querySelector(".api-btn").addEventListener("click", async () => {
     await startBattle();
 });
 
-const createPlayerStates = async() => {
+const createPlayerStates = async () => {
     const p1Pokemon = document.querySelector(".player-one-pokemon").value;
-    // const p2Pokemon = document.querySelector(".player-two-pokemon").value;
+    const p2Pokemon = document.querySelector(".player-two-pokemon").value;
 
-    const pokemonOne = await getPokemon(p1Pokemon);
+    const pokemons = [p1Pokemon, p2Pokemon];
 
-    const pokeObject = {
-        name: pokemonOne.name
+    for (const pokemon of pokemons) {
+        const fetchedPokemon = await getPokemon(pokemon);
+
+        let moves = [];
+        while (moves.length !== 4) {
+            const move = await getMove(
+                Math.floor(Math.random() * fetchedPokemon.moves.length),
+            );
+            // console.log(move)
+            if (move.damage_class.name === "physical") moves.push(move);
+        }
+
+        const idkMan = new Pokemon({
+            name: fetchedPokemon.name,
+            hp: fetchedPokemon.stats[0].base_stat,
+            attack: fetchedPokemon.stats[1].base_stat,
+            defense: fetchedPokemon.stats[2].base_stat,
+            speed: fetchedPokemon.stats[3].base_stat,
+            type: fetchedPokemon.types.map((type) => type.type.name),
+            moves: moves,
+        });
+
+        console.log(idkMan);
     }
-
-    for (let index = 0; index < 4; index++) {
-        getMove();
-    }
-
-
-    // await getPokemon(p2Pokemon);
 };
 
-const startBattle = async() => {
+const startBattle = async () => {
     await createPlayerStates();
-    // getMove();
 };
