@@ -16,9 +16,9 @@ export const getPokemon = async(pokemon = 1) => {
     }
 }
 
-export const getMove = async(move) => {
+export const getMove = async(pokemon = 1) => {
     try {
-        const response = await fetch(`${apiURL}/move/${move}`);
+        const response = await fetch(`${apiURL}/move/${15}`);
 
         if(!response.ok) throw new Error("Failed to fetch pokemon");
 
