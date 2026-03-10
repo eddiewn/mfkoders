@@ -8,9 +8,13 @@ document.querySelector(".api-btn").addEventListener("click", async() => {
 
 const createPlayerStates = async() => {
     const p1Pokemon = document.querySelector(".player-one-pokemon").value;
-    const p2Pokemon = document.querySelector(".player-two-pokemon").value;
+    // const p2Pokemon = document.querySelector(".player-two-pokemon").value;
 
     const pokemonOne = await getPokemon(p1Pokemon);
+
+    const pokeObject = {
+        name: pokemonOne.name
+    }
 
     for (let index = 0; index < 4; index++) {
         getMove();
