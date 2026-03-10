@@ -14,6 +14,8 @@ const createPlayerStates = async () => {
     for (const pokemon of pokemons) {
         const fetchedPokemon = await getPokemon(pokemon);
 
+
+        // Can only give out attack moves for now.
         let moves = [];
         while (moves.length !== 4) {
             const move = await getMove(
