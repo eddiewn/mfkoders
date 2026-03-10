@@ -9,6 +9,7 @@ export const getPokemon = async(pokemon = 1) => {
 
         const data = await response.json();
         console.log(data);
+        return data;
     } catch (error) {
         console.log(error)
         alert(error)
@@ -23,6 +24,7 @@ export const getMove = async(pokemon = 1) => {
 
         const data = await response.json();
         console.log(data);
+        return data;
     } catch (error) {
         console.log(error)
         alert(error)
