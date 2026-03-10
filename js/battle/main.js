@@ -1,7 +1,13 @@
-import {getPokemon, getMove} from "./api.js";
+import {getPokemon} from "../api/getPokemon.js";
+import { getMove } from "../api/getMove.js";
 import {Pokemon} from "./PokemonClass.js";
+import { RenderPlayers } from "./RenderPlayer.js";
+
+let players = [];
+let playerTurn = 0;
 
 document.querySelector(".api-btn").addEventListener("click", async () => {
+    console.log("Button press")
     await startBattle();
 });
 
@@ -14,14 +20,12 @@ const createPlayerStates = async () => {
     for (const pokemon of pokemons) {
         const fetchedPokemon = await getPokemon(pokemon);
 
-
         // Can only give out attack moves for now.
         let moves = [];
         while (moves.length !== 4) {
             const move = await getMove(
                 Math.floor(Math.random() * fetchedPokemon.moves.length),
             );
-            // console.log(move)
             if (move.damage_class.name === "physical") moves.push(move);
         }
 
@@ -35,10 +39,30 @@ const createPlayerStates = async () => {
             moves: moves,
         });
 
+        players.push(idkMan);
+
         console.log(idkMan);
     }
 };
 
+const RenderArena = async() => {
+    document.body.innerHTML = "";
+    const ArenaDiv = document.createElement("div");
+    ArenaDiv.className = "arena";
+
+    const body = document.querySelector("body");
+    body.appendChild(ArenaDiv);
+
+
+    RenderPlayers(players, playerTurn);
+
+
+};
+
 const startBattle = async () => {
     await createPlayerStates();
+
+    console.log(players);
+
+    await RenderArena();
 };
