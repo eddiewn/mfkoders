@@ -62,4 +62,6 @@ const startBattle = async () => {
     RenderArena(players, playerTurn, chosenMoves);
 };
 
-const game = async () => {};
+// export const resolveTurn = async () => {
+//     alert("Its battling time")
+// };

@@ -1,3 +1,5 @@
+import { resolveTurn } from "./resolveTurn.js";
+
 export const RenderArena = (players, whosTurn, chosenMoves) => {
     document.body.innerHTML = "";
     const ArenaDiv = document.createElement("div");
@@ -53,7 +55,7 @@ export const RenderArena = (players, whosTurn, chosenMoves) => {
                     RenderArena(players, whosTurn, chosenMoves);
 
                     if (whosTurn > 1) {
-                        console.log("battle time");
+                        resolveTurn();
                     }
                 });
 
