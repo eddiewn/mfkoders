@@ -12,12 +12,14 @@ export class Pokemon{
     }
 
     decreasePP(move){
-    if (move.pp > 0) {
-        move.pp--;
+        if (move.pp > 0) {
+            move.pp--;
+        }
     }
 
-    console.log(move)
-}
-
+    takeDamage(amount){
+        this.hp = this.hp - amount;
+        if(this.hp < 0) this.hp = 0;
+    }
     
 }

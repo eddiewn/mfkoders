@@ -1,3 +1,5 @@
+import { resolveTurn } from "./resolveTurn.js";
+
 export const RenderArena = (players, whosTurn, chosenMoves) => {
     document.body.innerHTML = "";
     const ArenaDiv = document.createElement("div");
@@ -44,21 +46,21 @@ export const RenderArena = (players, whosTurn, chosenMoves) => {
                 const moveButton = document.createElement("button");
 
                 moveButton.addEventListener("click", () => {
-                    chosenMoves[whosTurn] = move.name;
+                    chosenMoves[whosTurn] = move;
 
                     player.decreasePP(move);
-
-                    // console.log(move);
 
                     console.log(chosenMoves);
                     whosTurn++;
                     RenderArena(players, whosTurn, chosenMoves);
 
                     if (whosTurn > 1) {
-                        console.log("battle time");
+                        whosTurn = 0;
+                        resolveTurn(players, chosenMoves);
                     }
                 });
-                moveButton.textContent = move.name;
+
+                moveButton.textContent = `${move.name} | PP:${move.pp} | ${move.type.name} | Power: ${move.power}`;
                 moveContainer.appendChild(moveButton);
             });
         } else {
