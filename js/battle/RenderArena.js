@@ -55,7 +55,8 @@ export const RenderArena = (players, whosTurn, chosenMoves) => {
                     RenderArena(players, whosTurn, chosenMoves);
 
                     if (whosTurn > 1) {
-                        resolveTurn();
+                        whosTurn = 0;
+                        resolveTurn(players, chosenMoves);
                     }
                 });
 

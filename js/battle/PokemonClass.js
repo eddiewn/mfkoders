@@ -15,8 +15,6 @@ export class Pokemon{
     if (move.pp > 0) {
         move.pp--;
     }
-
-    console.log(move)
 }
 
     
