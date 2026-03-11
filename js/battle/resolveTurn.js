@@ -2,10 +2,12 @@ import { RenderArena } from "./RenderArena.js";
 
 export const resolveTurn = async (players, chosenMoves) => {
 
+    console.log(chosenMoves)
+
     let player1 = players[0];
     let player2 = players[1];
 
-    const attackOrder = [];
+    let attackOrder = [];
     if(player1.speed > player2.speed){
         attackOrder.push(player1, player2)
     }else{
@@ -30,12 +32,8 @@ export const resolveTurn = async (players, chosenMoves) => {
 
     });
 
-
-
-
-
-
-    // chosenMoves = [];
+    chosenMoves = [];
+    attackOrder = [];
 
     alert("Its battling time")
     RenderArena(players, 0, chosenMoves);
