@@ -24,7 +24,7 @@ const createPlayerStates = async () => {
         let moves = [];
         while (moves.length !== 4) {
             const random = Math.floor(
-                Math.random() * fetchedPokemon.moves.length,
+                1+ Math.random() * fetchedPokemon.moves.length,
             );
             const move = await getMove(random);
             if (move?.damage_class.name === "physical"){
