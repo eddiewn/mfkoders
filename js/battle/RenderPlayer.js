@@ -1,8 +1,25 @@
-export const RenderPlayers = (players, whosTurn) => {
+export const RenderArena = (players, whosTurn, chosenMoves) => {
+
+    document.body.innerHTML = "";
+    const ArenaDiv = document.createElement("div");
+    ArenaDiv.className = "arena";
+
+    const TopContainer = document.createElement("div");
+    TopContainer.className = "top-container";
+
+    const BottomContainer = document.createElement("div");
+    BottomContainer.className = "bottom-container";
+
+    const MoveContainer = document.createElement("div")
+    MoveContainer.className= "move-container";
+
+    ArenaDiv.append(TopContainer, BottomContainer, MoveContainer);
+
+    const body = document.querySelector("body");
+    body.appendChild(ArenaDiv);
+
+
     players.forEach((player) => {
-
-
-        const ArenaDiv = document.querySelector(".arena")
 
         const TopContainer = document.querySelector(".top-container");
         const BottomContainer = document.querySelector(".bottom-container");
@@ -29,6 +46,16 @@ export const RenderPlayers = (players, whosTurn) => {
                 const moveContainer = document.querySelector(".move-container");
                 const moveButton = document.createElement("button");
 
+                moveButton.addEventListener("click", () => {
+                    chosenMoves[whosTurn] = move.name;
+                    console.log(chosenMoves)
+                    whosTurn++;
+                    RenderArena(players, whosTurn, chosenMoves);
+
+                    if(whosTurn > 1){
+                        console.log("battle time");
+                    }
+                })
                 moveButton.textContent = move.name;
                 moveContainer.appendChild(moveButton);
             });

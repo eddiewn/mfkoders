@@ -1,10 +1,12 @@
 import {getPokemon} from "../api/getPokemon.js";
 import {getMove} from "../api/getMove.js";
 import {Pokemon} from "./PokemonClass.js";
-import {RenderPlayers} from "./RenderPlayer.js";
+import {RenderArena} from "./RenderPlayer.js";
 
 let players = [];
 let playerTurn = 0;
+
+let chosenMoves = [null, null];
 
 document.querySelector(".api-btn").addEventListener("click", async () => {
     console.log("Button press");
@@ -52,32 +54,16 @@ const createPlayerStates = async () => {
     }
 };
 
-const RenderArena = async () => {
-    document.body.innerHTML = "";
-    const ArenaDiv = document.createElement("div");
-    ArenaDiv.className = "arena";
 
-    const TopContainer = document.createElement("div");
-    TopContainer.className = "top-container";
-
-    const BottomContainer = document.createElement("div");
-    BottomContainer.className = "bottom-container";
-
-    const MoveContainer = document.createElement("div")
-    MoveContainer.className= "move-container";
-
-    ArenaDiv.append(TopContainer, BottomContainer, MoveContainer);
-
-    const body = document.querySelector("body");
-    body.appendChild(ArenaDiv);
-
-    RenderPlayers(players, playerTurn);
-};
 
 const startBattle = async () => {
     await createPlayerStates();
 
     console.log(players);
 
-    await RenderArena();
+    RenderArena(players, playerTurn, chosenMoves);
 };
+
+const game = async () => {
+
+}
