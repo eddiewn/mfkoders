@@ -6,7 +6,7 @@ import {RenderArena} from "./RenderArena.js";
 let players = [];
 let playerTurn = 0;
 
-let chosenMoves = [null, null];
+let chosenMoves = [];
 
 document.querySelector(".api-btn").addEventListener("click", async () => {
     console.log("Button press");
@@ -29,7 +29,7 @@ const createPlayerStates = async () => {
                 1 + Math.random() * fetchedPokemon.moves.length,
             );
             const move = await getMove(random);
-            if (move?.damage_class.name === "physical" && move?.power > 1) {
+            if (move?.damage_class.name === "physical" && move?.power !== null) {
                 moves.push(move);
             } else {
                 continue;

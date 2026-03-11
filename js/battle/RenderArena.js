@@ -46,7 +46,7 @@ export const RenderArena = (players, whosTurn, chosenMoves) => {
                 const moveButton = document.createElement("button");
 
                 moveButton.addEventListener("click", () => {
-                    chosenMoves[whosTurn] = move.name;
+                    chosenMoves[whosTurn] = move;
 
                     player.decreasePP(move);
 
