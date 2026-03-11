@@ -48,8 +48,6 @@ export const RenderArena = (players, whosTurn, chosenMoves) => {
 
                     player.decreasePP(move);
 
-                    // console.log(move);
-
                     console.log(chosenMoves);
                     whosTurn++;
                     RenderArena(players, whosTurn, chosenMoves);
@@ -58,7 +56,8 @@ export const RenderArena = (players, whosTurn, chosenMoves) => {
                         console.log("battle time");
                     }
                 });
-                moveButton.textContent = move.name;
+
+                moveButton.textContent = `${move.name} | PP:${move.pp} | ${move.type.name} | Power: ${move.power}`;
                 moveContainer.appendChild(moveButton);
             });
         } else {
