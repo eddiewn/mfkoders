@@ -1,5 +1,4 @@
 export const RenderArena = (players, whosTurn, chosenMoves) => {
-
     document.body.innerHTML = "";
     const ArenaDiv = document.createElement("div");
     ArenaDiv.className = "arena";
@@ -10,17 +9,15 @@ export const RenderArena = (players, whosTurn, chosenMoves) => {
     const BottomContainer = document.createElement("div");
     BottomContainer.className = "bottom-container";
 
-    const MoveContainer = document.createElement("div")
-    MoveContainer.className= "move-container";
+    const MoveContainer = document.createElement("div");
+    MoveContainer.className = "move-container";
 
     ArenaDiv.append(TopContainer, BottomContainer, MoveContainer);
 
     const body = document.querySelector("body");
     body.appendChild(ArenaDiv);
 
-
     players.forEach((player) => {
-
         const TopContainer = document.querySelector(".top-container");
         const BottomContainer = document.querySelector(".bottom-container");
 
@@ -42,28 +39,32 @@ export const RenderArena = (players, whosTurn, chosenMoves) => {
             playerSprite.src = player.backSprite;
             BottomContainer.appendChild(playerDiv);
 
-            player.moves.forEach(move => {
+            player.moves.forEach((move) => {
                 const moveContainer = document.querySelector(".move-container");
                 const moveButton = document.createElement("button");
 
                 moveButton.addEventListener("click", () => {
                     chosenMoves[whosTurn] = move.name;
-                    console.log(chosenMoves)
+
+                    player.decreasePP(move);
+
+                    // console.log(move);
+
+                    console.log(chosenMoves);
                     whosTurn++;
                     RenderArena(players, whosTurn, chosenMoves);
 
-                    if(whosTurn > 1){
+                    if (whosTurn > 1) {
                         console.log("battle time");
                     }
-                })
+                });
                 moveButton.textContent = move.name;
                 moveContainer.appendChild(moveButton);
             });
-
         } else {
             console.log(`It is NOT player ${player.name}'s turn`);
             playerSprite.src = player.frontSprite;
-            TopContainer.appendChild(playerDiv)
+            TopContainer.appendChild(playerDiv);
         }
     });
 };

@@ -10,4 +10,14 @@ export class Pokemon{
         this.frontSprite = frontSprite,
         this.backSprite = backSprite
     }
+
+    decreasePP(move){
+    if (move.pp > 0) {
+        move.pp--;
+    }
+
+    console.log(move)
+}
+
+    
 }
