@@ -4,7 +4,7 @@ import {Pokemon} from "./PokemonClass.js";
 import {RenderPlayers} from "./RenderPlayer.js";
 
 let players = [];
-let playerTurn = 0;
+let playerTurn = 1;
 
 document.querySelector(".api-btn").addEventListener("click", async () => {
     console.log("Button press");
@@ -27,7 +27,11 @@ const createPlayerStates = async () => {
                 Math.random() * fetchedPokemon.moves.length,
             );
             const move = await getMove(random);
-            if (move.damage_class.name === "physical") moves.push(move);
+            if (move?.damage_class.name === "physical"){
+                 moves.push(move)
+            }else{
+                continue;
+            }
         }
 
         const idkMan = new Pokemon({
@@ -38,6 +42,8 @@ const createPlayerStates = async () => {
             speed: fetchedPokemon.stats[3].base_stat,
             type: fetchedPokemon.types.map((type) => type.type.name),
             moves: moves,
+            frontSprite: fetchedPokemon.sprites.front_default,
+            backSprite: fetchedPokemon.sprites.back_default,
         });
 
         players.push(idkMan);
@@ -49,7 +55,16 @@ const createPlayerStates = async () => {
 const RenderArena = async () => {
     document.body.innerHTML = "";
     const ArenaDiv = document.createElement("div");
+
+    const TopContainer = document.createElement("div");
+    TopContainer.className = "top-container";
+
+    const BottomContainer = document.createElement("div");
+    BottomContainer.className = "bottom-container";
+
     ArenaDiv.className = "arena";
+
+    ArenaDiv.append(TopContainer, BottomContainer);
 
     const body = document.querySelector("body");
     body.appendChild(ArenaDiv);

@@ -1,14 +1,19 @@
 export const RenderPlayers = (players, whosTurn) => {
     players.forEach((player) => {
-        if (players[whosTurn] === player) {
-            console.log(`It is now player ${player.name}'s turn`);
-        } else {
-            console.log(`It is NOT player ${player.name}'s turn`);
-        }
-        const ArenaDiv = document.querySelector(".arena");
 
-        const playerTurnDiv = document.createElement("div");
-        playerTurnDiv.className = "playerTurnDiv";
+
+        const ArenaDiv = document.querySelector(".arena")
+
+        const TopContainer = document.querySelector(".top-container");
+        const BottomContainer = document.querySelector(".bottom-container");
+
+        ArenaDiv.appendChild(TopContainer, BottomContainer);
+
+
+        const playerDiv = document.createElement("div");
+        playerDiv.className = "playerDiv";
+
+        const playerSprite = document.createElement("img");
 
         const playerTurnName = document.createElement("p");
         playerTurnName.textContent = player.name;
@@ -16,8 +21,17 @@ export const RenderPlayers = (players, whosTurn) => {
         const playerTurnHP = document.createElement("p");
         playerTurnHP.textContent = "HP: " + player.hp;
 
-        playerTurnDiv.append(playerTurnName, playerTurnHP);
+        playerDiv.append(playerSprite, playerTurnName, playerTurnHP);
 
-        ArenaDiv.appendChild(playerTurnDiv);
+        if (players[whosTurn] === player) {
+            console.log(`It is now player ${player.name}'s turn`);
+            playerSprite.src = player.frontSprite;
+            BottomContainer.appendChild(playerDiv);
+
+        } else {
+            console.log(`It is NOT player ${player.name}'s turn`);
+            playerSprite.src = player.backSprite;
+            TopContainer.appendChild(playerDiv)
+        }
     });
 };
