@@ -85,6 +85,7 @@ nav a:hover {
     text-transform: uppercase;
     background: linear-gradient(45deg, #fff, var(--text-dim));
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -104,6 +105,7 @@ nav a:hover {
     font-weight: 800;
     background: linear-gradient(to right, var(--primary), var(--secondary));
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
