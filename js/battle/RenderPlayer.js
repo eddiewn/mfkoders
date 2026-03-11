@@ -7,9 +7,6 @@ export const RenderPlayers = (players, whosTurn) => {
         const TopContainer = document.querySelector(".top-container");
         const BottomContainer = document.querySelector(".bottom-container");
 
-        ArenaDiv.appendChild(TopContainer, BottomContainer);
-
-
         const playerDiv = document.createElement("div");
         playerDiv.className = "playerDiv";
 
@@ -25,12 +22,20 @@ export const RenderPlayers = (players, whosTurn) => {
 
         if (players[whosTurn] === player) {
             console.log(`It is now player ${player.name}'s turn`);
-            playerSprite.src = player.frontSprite;
+            playerSprite.src = player.backSprite;
             BottomContainer.appendChild(playerDiv);
+
+            player.moves.forEach(move => {
+                const moveContainer = document.querySelector(".move-container");
+                const moveButton = document.createElement("button");
+
+                moveButton.textContent = move.name;
+                moveContainer.appendChild(moveButton);
+            });
 
         } else {
             console.log(`It is NOT player ${player.name}'s turn`);
-            playerSprite.src = player.backSprite;
+            playerSprite.src = player.frontSprite;
             TopContainer.appendChild(playerDiv)
         }
     });

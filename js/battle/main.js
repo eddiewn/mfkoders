@@ -4,7 +4,7 @@ import {Pokemon} from "./PokemonClass.js";
 import {RenderPlayers} from "./RenderPlayer.js";
 
 let players = [];
-let playerTurn = 1;
+let playerTurn = 0;
 
 document.querySelector(".api-btn").addEventListener("click", async () => {
     console.log("Button press");
@@ -55,6 +55,7 @@ const createPlayerStates = async () => {
 const RenderArena = async () => {
     document.body.innerHTML = "";
     const ArenaDiv = document.createElement("div");
+    ArenaDiv.className = "arena";
 
     const TopContainer = document.createElement("div");
     TopContainer.className = "top-container";
@@ -62,9 +63,10 @@ const RenderArena = async () => {
     const BottomContainer = document.createElement("div");
     BottomContainer.className = "bottom-container";
 
-    ArenaDiv.className = "arena";
+    const MoveContainer = document.createElement("div")
+    MoveContainer.className= "move-container";
 
-    ArenaDiv.append(TopContainer, BottomContainer);
+    ArenaDiv.append(TopContainer, BottomContainer, MoveContainer);
 
     const body = document.querySelector("body");
     body.appendChild(ArenaDiv);
