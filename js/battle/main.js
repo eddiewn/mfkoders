@@ -1,7 +1,7 @@
 import {getPokemon} from "../api/getPokemon.js";
 import {getMove} from "../api/getMove.js";
 import {Pokemon} from "./PokemonClass.js";
-import {RenderArena} from "./RenderPlayer.js";
+import {RenderArena} from "./RenderArena.js";
 
 let players = [];
 let playerTurn = 0;
@@ -26,12 +26,12 @@ const createPlayerStates = async () => {
         let moves = [];
         while (moves.length !== 4) {
             const random = Math.floor(
-                1+ Math.random() * fetchedPokemon.moves.length,
+                1 + Math.random() * fetchedPokemon.moves.length,
             );
             const move = await getMove(random);
-            if (move?.damage_class.name === "physical"){
-                 moves.push(move)
-            }else{
+            if (move?.damage_class.name === "physical" && move?.power > 1) {
+                moves.push(move);
+            } else {
                 continue;
             }
         }
@@ -54,8 +54,6 @@ const createPlayerStates = async () => {
     }
 };
 
-
-
 const startBattle = async () => {
     await createPlayerStates();
 
@@ -64,6 +62,4 @@ const startBattle = async () => {
     RenderArena(players, playerTurn, chosenMoves);
 };
 
-const game = async () => {
-
-}
+const game = async () => {};
