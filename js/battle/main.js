@@ -55,9 +55,8 @@ const createPlayerStates = async () => {
 };
 
 const startBattle = async () => {
-
     await createPlayerStates();
-    
+
     const preArena = document.querySelector(".preArena");
     preArena.remove();
     console.log(players);
