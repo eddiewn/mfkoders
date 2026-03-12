@@ -17,12 +17,21 @@ export const resolveTurn = async (players, chosenMoves) => {
         //Göra denna dynamisk sen om du vill implementera
         let pokemonLevel = 1;
 
+
         let base =
             (((2 * pokemonLevel) / 5 + 2) * move.power * attacker.attack) /
                 defender.defense /
                 50 +
             2;
-        return base;
+            //Rolls if attack should crit
+            const roll = Math.floor(Math.random() * 24)
+            console.log(roll)
+            if(roll === 15){
+                console.log(`Attack critted for ${base * 1.5} instead of ${base}`)
+                base * 1.5;
+            }
+
+        return Math.floor(base);
     };
 
     attackOrder.forEach((attacker) => {
@@ -34,7 +43,7 @@ export const resolveTurn = async (players, chosenMoves) => {
 
         const damage = calculateDamage(attacker, defender, move);
 
-        defender.takeDamage(Math.round(damage));
+        defender.takeDamage(damage);
     });
 
     chosenMoves = [];
