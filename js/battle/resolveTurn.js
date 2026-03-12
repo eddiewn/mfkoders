@@ -1,4 +1,5 @@
 import {RenderArena} from "./RenderArena.js";
+import { calculateTypeDamageMultiplier } from "./typeDamageMultiplier.js";
 
 export const resolveTurn = async (players, chosenMoves) => {
     console.log(chosenMoves);
@@ -23,6 +24,13 @@ export const resolveTurn = async (players, chosenMoves) => {
                 defender.defense /
                 50 +
             2;
+
+            console.log(defender, move);
+
+            const damageTypeMultiplier = calculateTypeDamageMultiplier(move.type.name, defender.type);
+
+            base * damageTypeMultiplier;
+
             //Rolls if attack should crit
             const roll = Math.floor(Math.random() * 24)
             console.log(roll)
