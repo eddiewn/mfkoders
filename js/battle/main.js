@@ -29,7 +29,7 @@ const createPlayerStates = async () => {
                 1 + Math.random() * fetchedPokemon.moves.length,
             );
             const move = await getMove(random);
-            if (move?.damage_class.name === "physical" && move?.power !== null) {
+            if (move.damage_class.name === "physical" && move.power !== null) {
                 moves.push(move);
             } else {
                 continue;
@@ -55,8 +55,11 @@ const createPlayerStates = async () => {
 };
 
 const startBattle = async () => {
-    await createPlayerStates();
 
+    await createPlayerStates();
+    
+    const preArena = document.querySelector(".preArena");
+    preArena.remove();
     console.log(players);
 
     RenderArena(players, playerTurn, chosenMoves);

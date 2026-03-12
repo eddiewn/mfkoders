@@ -1,9 +1,16 @@
 import { resolveTurn } from "./resolveTurn.js";
 
 export const RenderArena = (players, whosTurn, chosenMoves) => {
-    document.body.innerHTML = "";
+
+
+    if(document.querySelector(".arena")){
+        document.querySelector(".arena").remove();
+    };
+
     const ArenaDiv = document.createElement("div");
     ArenaDiv.className = "arena";
+
+
 
     const TopContainer = document.createElement("div");
     TopContainer.className = "top-container";
