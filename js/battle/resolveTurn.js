@@ -7,6 +7,7 @@ export const resolveTurn = async (players, chosenMoves) => {
     let player1 = players[0];
     let player2 = players[1];
 
+    // Kollar vem som ska attackera först beroende på speed
     let attackOrder = [];
     if (player1.speed > player2.speed) {
         attackOrder.push(player1, player2);
@@ -40,6 +41,8 @@ export const resolveTurn = async (players, chosenMoves) => {
         console.log(base);
         console.log(defender, move);
 
+
+
         const damageTypeMultiplier = calculateTypeDamageMultiplier(
             attacker.type,
             move.type.name,
@@ -49,6 +52,7 @@ export const resolveTurn = async (players, chosenMoves) => {
         base * damageTypeMultiplier;
 
         //Rolls if attack should crit
+        //Måste uppdateras
         const roll = Math.floor(Math.random() * 24);
         console.log(roll);
         if (roll === 15) {
@@ -74,6 +78,6 @@ export const resolveTurn = async (players, chosenMoves) => {
     chosenMoves = [];
     attackOrder = [];
 
-    alert("Its battling time");
+    // alert("Its battling time");
     RenderArena(players, 0, chosenMoves);
 };
