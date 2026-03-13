@@ -27,7 +27,7 @@ export const resolveTurn = async (players, chosenMoves) => {
 
             console.log(defender, move);
 
-            const damageTypeMultiplier = calculateTypeDamageMultiplier(move.type.name, defender.type);
+            const damageTypeMultiplier = calculateTypeDamageMultiplier(attacker.type, move.type.name, defender.type);
 
             base * damageTypeMultiplier;
 
