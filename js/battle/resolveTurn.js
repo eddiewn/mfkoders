@@ -2,7 +2,6 @@ import {RenderArena} from "./RenderArena.js";
 import {calculateTypeDamageMultiplier} from "./typeDamageMultiplier.js";
 
 export const resolveTurn = async (players, chosenMoves) => {
-    console.log(chosenMoves);
 
     let player1 = players[0];
     let player2 = players[1];
@@ -38,11 +37,6 @@ export const resolveTurn = async (players, chosenMoves) => {
                 2;
         }
 
-        console.log(base);
-        console.log(defender, move);
-
-
-
         const damageTypeMultiplier = calculateTypeDamageMultiplier(
             attacker.type,
             move.type.name,
@@ -64,7 +58,6 @@ export const resolveTurn = async (players, chosenMoves) => {
     };
 
     attackOrder.forEach((attacker) => {
-        console.log(attacker);
         let defender = players.find((p) => p !== attacker);
 
         let chosenMove = players.indexOf(attacker);
