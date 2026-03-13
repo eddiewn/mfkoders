@@ -1,159 +1,142 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
-
-:root {
-    --primary: #00f2fe;
-    --secondary: #4facfe;
-    --bg: #0b0f1a;
-    --card-bg: rgba(255, 255, 255, 0.03);
-    --text: #ffffff;
-    --text-dim: #94a3b8;
-}
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 body {
-    background-color: var(--bg);
-    background-image: 
-        radial-gradient(circle at 10% 20%, rgba(0, 242, 254, 0.05) 0%, transparent 40%),
-        radial-gradient(circle at 90% 80%, rgba(79, 172, 254, 0.05) 0%, transparent 40%);
-    color: var(--text);
-    min-height: 100vh;
+    background-color: white;
+    color: #333;
 }
 
+h1 {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 36px;
+}
+
+p {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Navigering */
 nav {
     display: flex;
     justify-content: center;
-    padding: 2rem;
-    background: rgba(11, 15, 26, 0.8);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+    gap: 15px;
+    padding: 25px;
+    background-color: #ffcc00;
+    border-bottom: 4px solid white;
 }
 
 nav a {
-    color: var(--text-dim);
+    background-color: #ff9900;
+    color: white;
     text-decoration: none;
-    margin: 0 1.5rem;
-    font-weight: 500;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
+    padding: 10px 45px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: sans-serif;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-nav a:hover {
-    color: var(--primary);
-    text-shadow: 0 0 15px rgba(0, 242, 254, 0.5);
-}
-
-.cards {
+/* Korten (Team och Startsidan) */
+.team, .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2.5rem;
-    padding: 5rem 2rem;
-    max-width: 1300px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 40px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
 .card {
-    background: var(--card-bg);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 24px;
-    padding: 4rem 2rem;
+    background-color: #ffcc00;
+    border: 12px solid white;
+    border-radius: 15px;
+    padding: 25px 15px;
     text-align: center;
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    position: relative;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-.card:hover {
-    transform: translateY(-15px);
-    background: rgba(255, 255, 255, 0.06);
-    border-color: var(--primary);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 242, 254, 0.1);
+.card h2, .card h3 {
+    font-size: 28px;
+    margin-bottom: 15px;
 }
 
-.card h2 {
-    color: #00ffcc;
-    font-size: 1.5rem;
-    font-size: 1.4rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    background: linear-gradient(45deg, #fff, var(--text-dim));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+.card p {
+    background-color: #ffe57e;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: left;
+    font-family: sans-serif;
+    font-weight: bold;
+    margin: 10px 0;
 }
 
-.contact-container {
-    max-width: 600px;
-    margin: 4rem auto;
-    padding: 3rem;
-    background: var(--card-bg);
-    border-radius: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-}
-
-.contact-container h1 {
-    margin-bottom: 2rem;
-    text-align: center;
-    font-weight: 800;
-    background: linear-gradient(to right, var(--primary), var(--secondary));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+/* Battle-sidan (Inputs och knappar) */
+.preArena {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 50px;
+    background-color: white;
 }
 
 input, textarea {
+    padding: 15px;
+    border: 3px solid #ffcc00;
+    border-radius: 10px;
     width: 100%;
-    padding: 1.2rem;
-    margin-bottom: 1.5rem;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
+    max-width: 400px;
+    font-size: 16px;
+}
+
+.api-btn, button {
+    background-color: #ff9900;
     color: white;
-    outline: none;
-    transition: 0.3s;
-}
-
-input:focus, textarea:focus {
-    border-color: var(--primary);
-    background: rgba(255, 255, 255, 0.08);
-}
-
-button {
-    width: 100%;
-    padding: 1.2rem;
-    border: none;
-    border-radius: 12px;
-    background: linear-gradient(45deg, var(--primary), var(--secondary));
-    color: #000;
-    font-weight: 800;
-    text-transform: uppercase;
+    border: 4px solid white;
+    padding: 15px 50px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 22px;
     cursor: pointer;
-    transition: 0.4s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    font-family: sans-serif;
 }
 
 button:hover {
-    transform: scale(1.02);
-    box-shadow: 0 0 30px rgba(0, 242, 254, 0.4);
+    background-color: #e68a00;
 }
 
-.formbox{
-    background: #333;
-    border: 1px solid #444;
-    border-radius: 8px;
-    padding: 40px 20px;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* Kontakt-sektionen */
+.formbox {
+    max-width: 500px;
     margin: 40px auto;
-    max-width: 400px;
+    padding: 30px;
+    border: 10px solid #ffcc00;
+    border-radius: 20px;
+    background-color: white;
+}
 
+.formbox p {
+    text-align: left;
+    font-weight: bold;
+}
+
+form label {
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 40px;
+    font-family: sans-serif;
+    background-color: white;
 }
