@@ -72,5 +72,5 @@ export const resolveTurn = async (players, chosenMoves) => {
     attackOrder = [];
 
     // alert("Its battling time");
-    RenderArena(players, 0, chosenMoves);
+    await RenderArena(players, 0, chosenMoves);
 };

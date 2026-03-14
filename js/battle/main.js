@@ -63,7 +63,7 @@ const startBattle = async () => {
     preArena.remove();
     console.log(players);
 
-    RenderArena(players, playerTurn, chosenMoves);
+    await RenderArena(players, playerTurn, chosenMoves);
 };
 
 
