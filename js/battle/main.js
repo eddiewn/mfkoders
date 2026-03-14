@@ -29,7 +29,7 @@ const createPlayerStates = async () => {
                 1 + Math.random() * fetchedPokemon.moves.length,
             );
             const move = await getMove(random);
-            if (move.damage_class.name === "physical" && move.power !== null) {
+            if (move.damage_class.name !== "status" && move.power !== null) {
                 moves.push(move);
             } else {
                 continue;
@@ -41,7 +41,9 @@ const createPlayerStates = async () => {
             hp: fetchedPokemon.stats[0].base_stat,
             attack: fetchedPokemon.stats[1].base_stat,
             defense: fetchedPokemon.stats[2].base_stat,
-            speed: fetchedPokemon.stats[3].base_stat,
+            spAttack: fetchedPokemon.stats[3].base_stat,
+            spDefense: fetchedPokemon.stats[4].base_stat,
+            speed: fetchedPokemon.stats[5].base_stat,
             type: fetchedPokemon.types.map((type) => type.type.name),
             moves: moves,
             frontSprite: fetchedPokemon.sprites.front_default,
